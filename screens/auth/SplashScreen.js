@@ -1,13 +1,26 @@
-import { View, Text, Image, StyleSheet, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import Button from "../../components/Button";
 import { Colors } from "../../utils/colors";
 
-export default function SplashScreen() {
+export default function SplashScreen({ navigation }) {
+  function onSignUp() {
+    navigation.navigate("SignUp")
+  }
+  function onSignIn() {
+    navigation.navigate("SignIn")
+  }
   return (
     <View style={styles.container}>
       <Image
-        resizeMethod="contain"
+        // resizeMethod="contain"
         style={styles.image}
         source={require("../../assets/100501.png")}
       />
@@ -16,10 +29,10 @@ export default function SplashScreen() {
         <Text style={[styles.title, styles.innerTitle]}>All You Need</Text>
         <Text style={styles.title}>Here!</Text>
       </View>
-      <Button title="Sign Up" />
-      <Pressable hitSlop={20}>
-        <Text style={styles.signIn}>Sign In</Text>
-      </Pressable>
+      <Button onPress={onSignUp} title="Sign Up" />
+      <TouchableOpacity>
+        <Text onPress={onSignIn} style={styles.signIn}>Sign In</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -27,10 +40,11 @@ export default function SplashScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%'
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    // backgroundColor: Colors.white
   },
   titleContainer: {
     marginVertical: 54,
@@ -56,6 +70,6 @@ const styles = StyleSheet.create({
     marginTop: 24,
     fontSize: 16,
     fontWeight: "bold",
-    width: '100%'
+    width: "100%",
   },
 });

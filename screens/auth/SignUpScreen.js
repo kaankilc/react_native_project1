@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { Colors } from "../../utils/colors";
 import AuthHeader from "../../components/AuthHeader";
@@ -7,35 +7,44 @@ import CheckBox from "../../components/CheckBox";
 import Button from "../../components/Button";
 import Seperator from "../../components/Seperator";
 import GoogleLogin from "../../components/GoogleLogin";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function SignUpScreen() {
+export default function SignUpScreen({ navigation }) {
   const [checked, setChecked] = useState(false);
   function onSignIn() {
-    console.log('Button pressed')
+    navigation.navigate("SignIn");
+  }
+  function onBack() {
+    navigation.goBack();
   }
   return (
-    <View style={styles.container}>
-      <AuthHeader title="Sign Up" />
-      <Input label="Name" placeholder="John Doe" />
-      <Input label="Email" placeholder="example@gmail.com" />
-      <Input label="Password" placeholder="********" isPassword={true} />
-      <View style={styles.checkTerms}>
-        <CheckBox checked={checked} onCheck={() => setChecked(!checked)} />
-        <Text style={styles.checkText}>
-          I agree with <Text style={styles.checkTextBold}>Terms</Text> &{" "}
-          <Text style={styles.checkTextBold}>Privacy</Text>.
-        </Text>
-      </View>
-      <Button style={styles.button} title="Sign Up!" />
-      <Seperator text="Or sign up with" />
-      <GoogleLogin />
-      <View style={styles.footer}>
-        <Text style={styles.checkText}>
-          Already have an account?
-          <Text onPress={onSignIn} style={styles.checkTextBold}> Sign In</Text>
-        </Text>
-      </View>
-    </View>
+    <SafeAreaView>
+      <ScrollView style={styles.container}>
+        <AuthHeader onBackPress={onBack} title="Sign Up" />
+        <Input label="Name" placeholder="John Doe" />
+        <Input label="Email" placeholder="example@gmail.com" />
+        <Input label="Password" placeholder="********" isPassword={true} />
+        <View style={styles.checkTerms}>
+          <CheckBox checked={checked} onCheck={() => setChecked(!checked)} />
+          <Text style={styles.checkText}>
+            I agree with <Text style={styles.checkTextBold}>Terms</Text> &{" "}
+            <Text style={styles.checkTextBold}>Privacy</Text>.
+          </Text>
+        </View>
+        <Button style={styles.button} title="Sign Up!" />
+        <Seperator text="Or sign up with" />
+        <GoogleLogin />
+        <View style={styles.footer}>
+          <Text style={styles.checkText}>
+            Already have an account?
+            <Text onPress={onSignIn} style={styles.checkTextBold}>
+              {" "}
+              Sign In
+            </Text>
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -58,8 +67,8 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   footer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 45,
-    fontWeight: 'bold',
-  }
+    fontWeight: "bold",
+  },
 });

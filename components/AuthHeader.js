@@ -4,8 +4,8 @@ import { Colors } from "../utils/colors";
 
 export default function AuthHeader({ title, onBackPress }) {
   return (
-    <View style={styles.container}>
-      <Pressable onPress={onBackPress} hitSlop={20}>
+    <View style={styles.container} >
+      <Pressable hitSlop={20} onPress={onBackPress}>
         <Image style={styles.image} source={require("../assets/arrow.png")} />
       </Pressable>
       <Text style={styles.title}>{title}</Text>
