@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useEffect, useState } from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import SplashScreen from "./screens/auth/SplashScreen";
+import SignUpScreen from "./screens/auth/SignUpScreen";
+import SignInScreen from "./screens/auth/SignInScreen";
 
 export default function App() {
+  const [theme, setTheme] = useState("light");
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      {/* <SplashScreen /> */}
+      {/* <SignUpScreen /> */}
+      <SignInScreen />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginHorizontal: 8,
   },
 });
