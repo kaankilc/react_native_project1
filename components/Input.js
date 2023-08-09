@@ -9,7 +9,13 @@ import {
 import React, { useState } from "react";
 import { Colors } from "../utils/colors";
 
-export default function Input({ label, placeholder, isPassword }) {
+export default function Input({
+  label,
+  placeholder,
+  isPassword,
+  value,
+  onChangeText,
+}) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   function onEyePress() {
     setIsPasswordVisible(!isPasswordVisible);
@@ -19,13 +25,22 @@ export default function Input({ label, placeholder, isPassword }) {
       <Text style={styles.label}>{label}</Text>
       <View style={styles.inputContainer}>
         <TextInput
+          value={value}
+          onChangeText={onChangeText}
           style={styles.input}
           placeholder={placeholder}
           secureTextEntry={isPassword && !isPasswordVisible}
         />
         {isPassword ? (
           <Pressable onPress={onEyePress}>
-            <Image style={styles.eye} source={isPasswordVisible ? require("../assets/eye.png") : require('../assets/eye_closed.png')} />
+            <Image
+              style={styles.eye}
+              source={
+                isPasswordVisible
+                  ? require("../assets/eye.png")
+                  : require("../assets/eye_closed.png")
+              }
+            />
           </Pressable>
         ) : null}
       </View>
@@ -59,6 +74,5 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     marginHorizontal: 16,
-  }
-  
+  },
 });
