@@ -12,10 +12,10 @@ import { Colors } from "../../utils/colors";
 
 export default function SplashScreen({ navigation }) {
   function onSignUp() {
-    navigation.navigate("SignUp")
+    navigation.navigate("SignUp");
   }
   function onSignIn() {
-    navigation.navigate("SignIn")
+    navigation.navigate("SignIn");
   }
   return (
     <View style={styles.container}>
@@ -29,9 +29,13 @@ export default function SplashScreen({ navigation }) {
         <Text style={[styles.title, styles.innerTitle]}>All You Need</Text>
         <Text style={styles.title}>Here!</Text>
       </View>
-      <Button onPress={onSignUp} title="Sign Up" />
+      <View style={styles.buttonContainer}>
+        <Button onPress={onSignUp} title="Sign Up" />
+      </View>
       <TouchableOpacity>
-        <Text onPress={onSignIn} style={styles.signIn}>Sign In</Text>
+        <Text onPress={onSignIn} style={styles.signIn}>
+          Sign In
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -70,6 +74,10 @@ const styles = StyleSheet.create({
     marginTop: 24,
     fontSize: 16,
     fontWeight: "bold",
+    width: "100%",
+  },
+  buttonContainer: {
+    flexDirection: "row",
     width: "100%",
   },
 });

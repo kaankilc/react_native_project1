@@ -5,13 +5,16 @@ import { products } from "../../data/products";
 import FavoriteItem from "../../components/FavoriteItem";
 import Header from "../../components/Header";
 
-export default function Favorites() {
+export default function Favorites({ navigation }) {
   function renderItem({ item }) {
-    return <FavoriteItem {...item} />;
+    function onProductPress() {
+      navigation.navigate("ProductDetails", { product: item });
+    }
+    return <FavoriteItem onPress={onProductPress} {...item} />;
   }
   return (
     <SafeAreaView>
-      <Header title='Favorites'/>
+      <Header title="Favorites" />
       <FlatList
         data={products}
         renderItem={renderItem}

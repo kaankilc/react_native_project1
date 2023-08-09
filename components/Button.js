@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 20,
     paddingHorizontal: 8,
-    width: "100%",
+    flex: 1,
+    
   },
   text: {
     color: Colors.white,

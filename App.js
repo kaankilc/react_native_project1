@@ -10,7 +10,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./screens/app/Home";
 import Favorites from "./screens/app/Favorites";
 import Profile from "./screens/app/Profile";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import ProductDetailsScreen from "./screens/app/ProductDetailsScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -41,7 +41,7 @@ export default function App() {
             },
             headerShown: false,
             tabBarShowLabel: false,
-            tabBarStyle: {borderTopColor: Colors.lightGrey}
+            tabBarStyle: { borderTopColor: Colors.lightGrey, backgroundColor: Colors.white },
           })}
         >
           <Tab.Screen name="Home" component={Home} />
@@ -64,11 +64,18 @@ export default function App() {
       <NavigationContainer style={styles.container} theme={theme}>
         <Stack.Navigator>
           {isSignedIn ? (
-            <Stack.Screen
-              name="Tabs"
-              component={Tabs}
-              options={{ headerShown: false }}
-            />
+            <>
+              <Stack.Screen
+                name="Tabs"
+                component={Tabs}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ProductDetails"
+                component={ProductDetailsScreen}
+                options={{ headerShown: false }}
+              />
+            </>
           ) : (
             <>
               <Stack.Screen

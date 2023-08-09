@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   price: {
     color: Colors.black,
     paddingBottom: 8,
-    fontWeight: 'bold  '
+    fontWeight: "bold",
   },
   image: {
     width: 100,
@@ -45,5 +45,5 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-  }
+  },
 });

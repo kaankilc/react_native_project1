@@ -7,7 +7,7 @@ import CategoryBox from "../../components/CategoryBox";
 import { products } from "../../data/products";
 import ProductHomeItem from "../../components/ProductHomeItem";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [selectedCategory, setSelectedCategory] = useState();
   const [keyword, setKeyword] = useState();
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -46,8 +46,12 @@ export default function Home() {
       />
     );
   }
+
   function renderProductItem({ item }) {
-    return <ProductHomeItem {...item} />;
+    function onProductPress(product) {
+      navigation.navigate("ProductDetails", { product });
+    }
+    return <ProductHomeItem onPress={() => onProductPress(item)} {...item} />;
   }
   return (
     <SafeAreaView>
