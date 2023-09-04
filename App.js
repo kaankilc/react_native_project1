@@ -11,10 +11,39 @@ import Home from "./screens/app/Home";
 import Favorites from "./screens/app/Favorites";
 import Profile from "./screens/app/Profile";
 import ProductDetailsScreen from "./screens/app/ProductDetailsScreen";
+import Settings from "./screens/app/Settings";
+import CreateListing from "./screens/app/CreateListing";
+import MyListings from "./screens/app/MyListings";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
+  function ProfileStack() {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CreateListing"
+          component={CreateListing}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="MyListings"
+          component={MyListings}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    );
+  }
   function Tabs() {
     return (
       <>
@@ -31,7 +60,7 @@ export default function App() {
                 icon = focused
                   ? require("./assets/bookmark_active.png")
                   : require("./assets/bookmark.png");
-              } else if (route.name === "Profile") {
+              } else if (route.name === "ProfileStack") {
                 icon = focused
                   ? require("./assets/bi_person-fill.png")
                   : require("./assets/bi_person-empty.png");
@@ -41,12 +70,15 @@ export default function App() {
             },
             headerShown: false,
             tabBarShowLabel: false,
-            tabBarStyle: { borderTopColor: Colors.lightGrey, backgroundColor: Colors.white },
+            tabBarStyle: {
+              borderTopColor: Colors.lightGrey,
+              backgroundColor: Colors.white,
+            },
           })}
         >
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Favorites" component={Favorites} />
-          <Tab.Screen name="Profile" component={Profile} />
+          <Tab.Screen name="ProfileStack" component={ProfileStack} />
         </Tab.Navigator>
       </>
     );

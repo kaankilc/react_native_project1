@@ -2,7 +2,7 @@ import { View, Image, StyleSheet, Pressable, Text } from "react-native";
 import React, { useState } from "react";
 import { Colors } from "../utils/colors";
 
-export default function FavoriteItem({ title, price, image, onPress }) {
+export default function FavoriteItem({ title, price, image, onPress, icon }) {
   return (
     <Pressable onPress={onPress} style={styles.container}>
       <Image style={styles.image} source={{ uri: image }} />
@@ -10,7 +10,10 @@ export default function FavoriteItem({ title, price, image, onPress }) {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.price}>{price}</Text>
       </View>
-      <Image source={require("../assets/close.png")} style={styles.icon} />
+      <Image
+        source={icon || require("../assets/close.png")}
+        style={styles.icon}
+      />
     </Pressable>
   );
 }
